@@ -1,1 +1,3 @@
-www.ktejdeep.com
+Host/Name: www
+Type: CNAME
+Value: ktejdeep.github.io
