@@ -12,28 +12,25 @@ html{
 
 @font-face {
     font-family: 'future';
-    src: url('./teknaf-regular-font/TeknafRegular-rv0aB.otf') format('opentype');
+    src: url('../teknaf-regular-font/TeknafRegular-rv0aB.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
 }
 @font-face {
     font-family: 'newfuture';
-    src: url('./quicking-font/QuickingRegular-gw5KY.otf') format('opentype');
-    /* font-weight: normal;
-    font-style: normal;
-    font-display: swap;  */
+    src: url('../quicking-font/QuickingRegular-gw5KY.otf') format('opentype');
 }
 @font-face {
     font-family: 'xyz';
-    src: url('./sd-dystopian-font/Sddystopiandemo-GO7xa.otf') format('opentype');
+    src: url('../sd-dystopian-font/Sddystopiandemo-GO7xa.otf') format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
 }
 @font-face {
     font-family: 'contact';
-    src: url(./tusker-grotesk-font/TuskerGrotesk-4500Medium.ttf) format('opentype');
+    src: url("../tusker-grotesk-font/TuskerGrotesk-4500Medium.ttf") format('opentype');
     font-weight: normal;
     font-style: normal;
     font-display: swap; 
