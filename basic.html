@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather Forecast App</title>
+  <style>
+    body {
+      background: linear-gradient(135deg, #1e3c72, #2a5298);
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #d0e8ff;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .container {
+      background: rgba(15, 32, 64, 0.85);
+      margin: 100px auto;
+      padding: 40px 50px;
+      border-radius: 25px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      width: 370px;
+      max-width: 90vw;
+    }
+
+    h1 {
+      font-weight: 700;
+      font-size: 2.4rem;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+    #date-time {
+      font-weight: 500;
+      color: #a8c7ff;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    input {
+      padding: 12px 15px;
+      border: none;
+      border-radius: 15px 0 0 15px;
+      width: 65%;
+      font-size: 1rem;
+      outline: none;
+      color: #1e3c72;
+      background-color: #d0e8ff;
+      transition: background-color 0.3s ease;
+    }
+
+    input:focus {
+      background-color: #a8c7ff;
+    }
+
+    button {
+      padding: 12px 20px;
+      border: none;
+      border-radius: 0 15px 15px 0;
+      background-color: #5984ff;
+      color: white;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      font-size: 1rem;
+    }
+
+    button:hover {
+      background-color: #355ec9;
+    }
+
+    #weather-info {
+      margin-top: 30px;
+      line-height: 1.6;
+      font-size: 1.15rem;
+      font-weight: 600;
+      color: #c1d9ff;
+    }
+
+    #weather-info h2 {
+      margin-bottom: 10px;
+      font-size: 2rem;
+      color: #a4c8ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🌤 Weather Forecast</h1>
+    <p id="date-time"></p>
+    <div class="search">
+      <input type="text" id="city" placeholder="Enter city name..." />
+      <button onclick="getWeather()">Search</button>
+    </div>
+    <div id="weather-info"></div>
+  </div>
+
+  <script>
+    const apiKey = "303eb9e7127d11f5c781a75f11cb9339"; // Replace with your actual OpenWeather API key
+
+    function showDateTime() {
+      const now = new Date();
+      const options = { weekday: "long", year: "numeric", month: "long", day: "numeric" };
+      document.getElementById("date-time").textContent = now.toLocaleDateString("en-US", options);
+    }
+    showDateTime();
+
+    async function getWeather() {
+      const city = document.getElementById("city").value;
+      if (!city) return alert("Please enter a city name!");
+
+      const url = https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        if (data.cod === "404" || data.cod === 404) {
+          document.getElementById("weather-info").innerHTML = <p>❌ City not found!</p>;
+          return;
+        }
+
+        document.getElementById("weather-info").innerHTML = `
+          <h2>${data.name}</h2>
+          <p>🌡 Temperature: ${data.main.temp}°C</p>
+          <p>💧 Humidity: ${data.main.humidity}%</p>
+          <p>🌬 Wind Speed: ${data.wind.speed} m/s</p>
+          <p>☁ Condition: ${data.weather[0].description}</p>
+        `;
+
+        changeBackground(data.weather[0].main.toLowerCase());
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    }
+
+    
+  </script>
+</body>
+</html>
